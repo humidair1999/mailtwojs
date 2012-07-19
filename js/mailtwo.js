@@ -173,7 +173,12 @@ Copyright (c) 2012
 
         var constructModal = function() {
             var $modal = $("<div />"),
-                modalInner = "";
+                modalInner = "",
+                socialMediaSites = ["facebook", "twitter", "linkedin"],
+                socialMediaAccounts = [options.facebook, options.twitter, options.linkedin];
+
+            console.log(socialMediaSites);
+            console.log(socialMediaAccounts);
 
             modalInner += "<a href=\"#\" id=\"closeMailtwoModal\">X</a>"
                         + "<ul>"
@@ -181,25 +186,13 @@ Copyright (c) 2012
                         + "<a href=\"" + options.emailFull + "\" target=\"_blank\">lol</a>"
                         + "</li>";
 
-            if (options.facebook) {
-                modalInner += "<li>"
-                            + "<a href=\"http://www.facebook.com/" + options.facebook + "\" target=\"_blank\">"
-                            + options.facebook + "</a>"
+            for (var i = 0; i < socialMediaSites.length; i++) {
+                if (socialMediaAccounts[i]) {
+                    modalInner += "<li>"
+                            + "<a href=\"http://" + socialMediaSites[i] + ".com/"
+                            + socialMediaAccounts[i] + "\" target=\"_blank\">" + socialMediaAccounts[i] + "</a>"
                             + "</li>";
-            }
-
-            if (options.twitter) {
-                modalInner += "<li>"
-                            + "<a href=\"http://twitter.com/" + options.twitter + "\" target=\"_blank\">"
-                            + options.twitter + "</a>"
-                            + "</li>";
-            }
-
-            if (options.linkedin) {
-                modalInner += "<li>"
-                            + "<a href=\"http://www.linkedin.com/" + options.linkedin + "\" target=\"_blank\">"
-                            + options.linkedin + "</a>"
-                            + "</li>";
+                }
             }
 
             $modal
@@ -234,6 +227,8 @@ Copyright (c) 2012
         options.facebook = options.facebook || $element.attr("data-facebook");
         options.twitter = options.twitter || $element.attr("data-twitter");
         options.linkedin = options.linkedin || $element.attr("data-linkedin");
+
+        console.log($element);
 
         $element.on("click", function(evt) {
             evt.preventDefault();
