@@ -11,13 +11,9 @@ Copyright (c) 2012
     // create the defaults and set up the constructor for the plugin itself
     var pluginName = "mailtwo",
         defaults = {
-            modalParent: "body",
             modalBgClass: "mailtwoBackground",
-            modalClass: "mailtwoModal",
-            facebook: "",
-            twitter: "",
-            linkedin: ""
-            // headerClass has no default; no point in initializing an empty option!
+            modalClass: "mailtwoModal"
+            // facebook/twitter/linkedin have no defaults; no point in initializing an empty option!
         },
         Plugin = function(element, options) {
             // "this.defaults" and "this.name" available to the object but not used within
@@ -169,33 +165,56 @@ Copyright (c) 2012
         });
     };
 
+    Plugin.prototype.constructModal = function() {
+        console.log(options);
+
+        var constructModal = function() {
+            var $modal = $("<div />"),
+                modalInner = "";
+
+            modalInner += "<ul>"
+                        + "<li><a href=\"" + options.emailFull + "\" target=\"_blank\">lol</a>";
+
+            $modal
+                .addClass(options.modalClass)
+                .html(modalInner);
+
+            return $modal;
+        }
+
+        if ($("body").children("." + options.modalBgClass).length === 0) {
+            $("<div />")
+                .addClass(options.modalBgClass)
+                .append(constructModal())
+                .appendTo("body");
+        }
+    }
+
     // METHOD: initialization method for the plugin fires after setup is complete,
     //  element and options are instantly available to the object. after setup,
     //  relevant method will be called based on user-defined "mode"
     Plugin.prototype.init = function() {
-        var $element = $(this.element),
-            options = this.options,
-            emailFull = ($element.attr("href")),
-            emailParsed = (emailFull.split(":")[1]),
-            haha = 6;
+        var plugin = this,
+            $element = $(this.element),
+            options = this.options;
+
+        options.emailFull = $element.attr("href");
+        options.emailParsed = options.emailFull.split(":")[1];
+        options.facebook = options.facebook || $element.attr("data-facebook");
+        options.twitter = options.twitter || $element.attr("data-twitter");
+        options.linkedin = options.linkedin || $element.attr("data-linkedin");
 
         console.log($element);
         console.log(options);
-        console.log(emailFull);
-        console.log(emailParsed);
+        console.log(options.facebook);
 
-        console.log($(options.modalParent));
-        console.log("." + options.modalBgClass);
+        $element.on("click", function(evt) {
+            evt.preventDefault();
 
-        if ($(options.modalParent).children("." + options.modalBgClass).length === 0) {
-            $('<div />', {
-                class: options.modalBgClass
-            })
-                
-                .appendTo(options.modalParent);
+            console.log(this);
 
-            console.log("GOOD");
-        }
+            plugin.constructModal();
+        });
 
         /*
         // for every header cell, store its content and width value; optionally,
