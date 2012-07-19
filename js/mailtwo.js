@@ -43,7 +43,7 @@ Copyright (c) 2012
             console.log(socialMediaSites);
             console.log(socialMediaAccounts);
 
-            modalInner += "<a href=\"#\" id=\"closeMailtwoModal\">X</a>"
+            modalInner += "<a href=\"#\" id=\"closeMailtwoModal\"></a>"
                         + "<ul>"
                         + "<li><span>Send me an email:</span>"
                         + "<a href=\"" + options.emailFull + "\" target=\"_blank\">lol</a>"
@@ -53,7 +53,8 @@ Copyright (c) 2012
                 if (socialMediaAccounts[i]) {
                     modalInner += "<li>"
                             + "<a href=\"http://" + socialMediaSites[i] + ".com/"
-                            + socialMediaAccounts[i] + "\" target=\"_blank\">" + socialMediaAccounts[i] + "</a>"
+                            + socialMediaAccounts[i] + "\" target=\"_blank\" class=\"mailtwo"
+                            + socialMediaSites[i] + "\"></a>"
                             + "</li>";
                 }
             }
@@ -113,7 +114,7 @@ Copyright (c) 2012
             // console.log($("." + options.modalBgClass).css("display"));
         });
 
-        $("#closeMailtwoModal").live("click", function(evt) {
+        $(document).on("click", "#closeMailtwoModal", function(evt) {
             evt.preventDefault();
 
             $("." + options.modalBgClass).hide();

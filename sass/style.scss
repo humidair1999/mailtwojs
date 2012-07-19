@@ -80,6 +80,18 @@ td { vertical-align: top; }
     -webkit-padding-start:  0;
 }
 
+@font-face {
+    font-family: "SocialicoRegular";
+    src: url("fonts/socialico-webfont.eot");
+    src: url("fonts/socialico-webfont.eot?#iefix") format('embedded-opentype'),
+         url("fonts/socialico-webfont.woff") format("woff"),
+         url("fonts/socialico-webfont.ttf") format("truetype"),
+         url("fonts/socialico-webfont.svg#SocialicoRegular") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 
 
 
