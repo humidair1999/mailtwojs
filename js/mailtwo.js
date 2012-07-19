@@ -11,8 +11,9 @@ Copyright (c) 2012
     // create the defaults and set up the constructor for the plugin itself
     var pluginName = "mailtwo",
         defaults = {
-            modalBgClass: ".mailtwoBackground",
-            modalClass: ".mailtwoModal",
+            modalParent: "body",
+            modalBgClass: "mailtwoBackground",
+            modalClass: "mailtwoModal",
             facebook: "",
             twitter: "",
             linkedin: ""
@@ -174,11 +175,27 @@ Copyright (c) 2012
     Plugin.prototype.init = function() {
         var $element = $(this.element),
             options = this.options,
-            email = $element.attr("href");
+            emailFull = ($element.attr("href")),
+            emailParsed = (emailFull.split(":")[1]),
+            haha = 6;
 
         console.log($element);
         console.log(options);
-        console.log(email);
+        console.log(emailFull);
+        console.log(emailParsed);
+
+        console.log($(options.modalParent));
+        console.log("." + options.modalBgClass);
+
+        if ($(options.modalParent).children("." + options.modalBgClass).length === 0) {
+            $('<div />', {
+                class: options.modalBgClass
+            })
+                
+                .appendTo(options.modalParent);
+
+            console.log("GOOD");
+        }
 
         /*
         // for every header cell, store its content and width value; optionally,

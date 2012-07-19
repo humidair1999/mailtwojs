@@ -22,7 +22,7 @@
 <header>
 
 </header>
-<div role="main">
+<div class="main" role="main">
 
     <a href="mailto:email@example.com" id="mailtwoTest1">A single email address with ID attribute 'mailtwoTest1'</a>
 
@@ -54,6 +54,7 @@
     });
 
     $(".emailList").mailtwo({
+        modalParent: ".main",
         facebook: "",
         twitter: "",
         linkedin: ""
