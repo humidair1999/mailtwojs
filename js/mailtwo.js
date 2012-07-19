@@ -81,8 +81,8 @@ Copyright (c) 2012
         $(modalElement).css({
             top: "50%",
             left: "50%",
-            "margin-left": (-($(modalElement).width() / 2) + "px"),
-            "margin-top": (-($(modalElement).height() / 2) + "px")
+            "margin-left": (-($(modalElement).width() / 2)),
+            "margin-top": (-($(modalElement).height() / 2))
         });
 
     }
