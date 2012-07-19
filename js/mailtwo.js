@@ -165,9 +165,11 @@ Copyright (c) 2012
         });
     };
 
-    Plugin.prototype.constructModal = function($element, options) {
-        console.log($element);
+    Plugin.prototype.constructModal = function(options) {
+        var modalBgElement = ("." + options.modalBgClass);
+
         console.log(options);
+        console.log(modalBgElement);
 
         var constructModal = function() {
             var $modal = $("<div />"),
@@ -175,8 +177,30 @@ Copyright (c) 2012
 
             modalInner += "<a href=\"#\" id=\"closeMailtwoModal\">X</a>"
                         + "<ul>"
-                        + "<li><a href=\"" + options.emailFull + "\" target=\"_blank\">lol</a></li>"
-                        + "</ul>";
+                        + "<li><span>Send me an email:</span>"
+                        + "<a href=\"" + options.emailFull + "\" target=\"_blank\">lol</a>"
+                        + "</li>";
+
+            if (options.facebook) {
+                modalInner += "<li>"
+                            + "<a href=\"http://www.facebook.com/" + options.facebook + "\" target=\"_blank\">"
+                            + options.facebook + "</a>"
+                            + "</li>";
+            }
+
+            if (options.twitter) {
+                modalInner += "<li>"
+                            + "<a href=\"http://twitter.com/" + options.twitter + "\" target=\"_blank\">"
+                            + options.twitter + "</a>"
+                            + "</li>";
+            }
+
+            if (options.linkedin) {
+                modalInner += "<li>"
+                            + "<a href=\"http://www.linkedin.com/" + options.linkedin + "\" target=\"_blank\">"
+                            + options.linkedin + "</a>"
+                            + "</li>";
+            }
 
             $modal
                 .addClass(options.modalClass)
@@ -185,14 +209,16 @@ Copyright (c) 2012
             return $modal;
         }
 
-        if ($("body").children("." + options.modalBgClass).length === 0) {
+        if ($("body").children(modalBgElement).length === 0) {
             $("<div />")
                 .addClass(options.modalBgClass)
-                .append(constructModal())
+                .html(constructModal())
                 .appendTo("body");
         }
-
-        
+        else {
+            $(modalBgElement)
+                .html(constructModal());
+        }
     }
 
     // METHOD: initialization method for the plugin fires after setup is complete,
@@ -212,7 +238,7 @@ Copyright (c) 2012
         $element.on("click", function(evt) {
             evt.preventDefault();
 
-            plugin.constructModal($element, options);
+            plugin.constructModal(options);
 
             $("." + options.modalBgClass).show();
 
@@ -226,31 +252,6 @@ Copyright (c) 2012
 
             // console.log($("." + options.modalBgClass).css("display"));
         });
-
-        /*
-        // for every header cell, store its content and width value; optionally,
-        //  store the text's style as well
-        $element.find("th").each(function() {
-            var thObject = {
-                content: $(this).html(),
-                width: $(this).width()
-            };
-
-            if (options.preserveStyle) {
-                thObject.fontSize = $(this).css("font-size"),
-                thObject.fontWeight = $(this).css("font-weight"),
-                thObject.fontStyle = $(this).css("font-style"),
-                thObject.fontColor = $(this).css("color"),
-                thObject.colSpan = $(this).attr("colspan");
-            }
-
-            thArray.push(thObject);
-        });
-
-        // pass relevant objects/values to respective method, depending
-        //  upon user input or default
-        (options.mode === "repeater") ? this.repeatHeader($element, options, thArray) : this.fixHeader($element, options, thArray);
-        */
     };
 
     // a lightweight plugin wrapper around the constructor, preventing against
@@ -268,6 +269,8 @@ Copyright (c) 2012
         return this.each(function() {
             // if element isn't a link, find actual links within the element and
             //  attach the plugin instantiation to each of them
+
+            // TODO: if "a" element doesn't start with "mailto:" then do nothing
             if (!$(this).attr("href")) {
                 $(this).find("a").each(function() {
                     attachPlugin.call(this);
