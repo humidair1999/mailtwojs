@@ -165,15 +165,18 @@ Copyright (c) 2012
         });
     };
 
-    Plugin.prototype.constructModal = function() {
+    Plugin.prototype.constructModal = function($element, options) {
+        console.log($element);
         console.log(options);
 
         var constructModal = function() {
             var $modal = $("<div />"),
                 modalInner = "";
 
-            modalInner += "<ul>"
-                        + "<li><a href=\"" + options.emailFull + "\" target=\"_blank\">lol</a>";
+            modalInner += "<a href=\"#\" id=\"closeMailtwoModal\">X</a>"
+                        + "<ul>"
+                        + "<li><a href=\"" + options.emailFull + "\" target=\"_blank\">lol</a></li>"
+                        + "</ul>";
 
             $modal
                 .addClass(options.modalClass)
@@ -188,6 +191,8 @@ Copyright (c) 2012
                 .append(constructModal())
                 .appendTo("body");
         }
+
+        
     }
 
     // METHOD: initialization method for the plugin fires after setup is complete,
@@ -204,16 +209,22 @@ Copyright (c) 2012
         options.twitter = options.twitter || $element.attr("data-twitter");
         options.linkedin = options.linkedin || $element.attr("data-linkedin");
 
-        console.log($element);
-        console.log(options);
-        console.log(options.facebook);
-
         $element.on("click", function(evt) {
             evt.preventDefault();
 
-            console.log(this);
+            plugin.constructModal($element, options);
 
-            plugin.constructModal();
+            $("." + options.modalBgClass).show();
+
+            // console.log($("." + options.modalBgClass).css("display"));
+        });
+
+        $("#closeMailtwoModal").live("click", function(evt) {
+            evt.preventDefault();
+
+            $("." + options.modalBgClass).hide();
+
+            // console.log($("." + options.modalBgClass).css("display"));
         });
 
         /*
