@@ -16,8 +16,8 @@
 
 .mailtwoModal {
     position: relative;
-    width: 600px;
-    height: 300px;
+    width: 592px;
+    height: 270px;
 
     background: #fff;
 
@@ -34,6 +34,33 @@
     border: 16px solid rgba(0, 0, 0, 0.4);
 }
 
+.mailtwoModal > span {
+    float: left;
+    margin: 10px;
+
+    font-size: 24px;
+
+    border: 0px solid #000;
+}
+
+#closeMailtwoModal:link, #closeMailtwoModal:visited {
+    float: right;
+    margin: 10px;
+
+    color: #222;
+    font-size: 20px;
+
+    text-decoration: none;
+}
+
+#closeMailtwoModal:hover {
+    color: gray;
+}
+
+#closeMailtwoModal:link:before, #closeMailtwoModal:visited:before {
+    content: "X";
+}
+
 .mailtwoModal ul:before, .mailtwoModal ul:after { content: ""; display: table; }
 .mailtwoModal ul:after { clear: both; }
 .mailtwoModal ul { *zoom: 1; }
@@ -45,7 +72,7 @@
 
     list-style-type: none;
 
-    border: 1px solid #000;
+    border: 0px solid #000;
 }
 
 .mailtwoModal ul li:before, .mailtwoModal ul li:after { content: ""; display: table; }
@@ -55,7 +82,11 @@
 .mailtwoModal ul li {
     float: left;
 
-    border: 1px solid #000;
+    border: 0px solid #000;
+}
+
+.mailtwoModal ul li:first-child {
+    margin: 0 16px 0 0;
 }
 
 .mailtwoModal ul li span {
@@ -73,13 +104,36 @@
 #sendMailtwoEmail:link, #sendMailtwoEmail:visited {
     float: right;
     clear: both;
+    padding: 2px 8px;
+
+    color: #fff;
+    text-decoration: none;
+
+    background: #222;
+
+    -webkit-border-radius:  6px;
+    border-radius:          6px;
+
+    -moz-background-clip:       padding;
+    -webkit-background-clip:    padding-box;
+    background-clip:            padding-box;
+
+    -webkit-box-shadow: 0px 0px 16px #ffffff;
+    box-shadow:         0px 0px 16px #ffffff;
+}
+
+#sendMailtwoEmail:hover {
+    color: gray;
 }
 
 .mailtwofacebook:link, .mailtwofacebook:visited,
 .mailtwotwitter:link, .mailtwotwitter:visited,
 .mailtwolinkedin:link, .mailtwolinkedin:visited {
+    display: block;
+    margin: 20px 0 0;
+
     font-family: "SocialicoRegular";
-    font-size: 60px;
+    font-size: 100px;
     color: #222;
 
     text-decoration: none;
@@ -101,21 +155,4 @@
 
 .mailtwolinkedin:link:before, .mailtwolinkedin:visited:before {
     content: "i";
-}
-
-#closeMailtwoModal:link, #closeMailtwoModal:visited {
-    float: right;
-    margin: 6px;
-
-    color: #222;
-
-    text-decoration: none;
-}
-
-#closeMailtwoModal:hover {
-    color: gray;
-}
-
-#closeMailtwoModal:link:before, #closeMailtwoModal:visited:before {
-    content: "X";
 }

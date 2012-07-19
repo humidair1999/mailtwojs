@@ -43,11 +43,12 @@ Copyright (c) 2012
             console.log(socialMediaSites);
             console.log(socialMediaAccounts);
 
-            modalInner += "<a href=\"#\" id=\"closeMailtwoModal\"></a>"
+            modalInner += "<span>Contact Me</span>"
+                        + "<a href=\"#\" id=\"closeMailtwoModal\"></a>"
                         + "<ul>"
                         + "<li><span>Send me an email:</span>"
-                        + "<textarea>hahha</textarea>"
-                        + "<a href=\"" + options.emailFull + "\" id=\"sendMailtwoEmail\" target=\"_blank\">lol</a>"
+                        + "<textarea id=\"mailtwoTextarea\" placeholder=\"Body of email message\"></textarea>"
+                        + "<a href=\"" + options.emailFull + "\" id=\"sendMailtwoEmail\" target=\"_blank\">Send</a>"
                         + "</li>";
 
             for (var i = 0; i < socialMediaSites.length; i++) {
@@ -117,10 +118,17 @@ Copyright (c) 2012
 
         $(document).on("click", "#closeMailtwoModal", function(evt) {
             evt.preventDefault();
+            evt.stopImmediatePropagation();
 
             $("." + options.modalBgClass).hide();
 
             // console.log($("." + options.modalBgClass).css("display"));
+        });
+
+        $(document).on("keydown", "#mailtwoTextarea", function(evt) {
+            evt.stopImmediatePropagation();
+
+            console.log("pressed");
         });
     };
 
