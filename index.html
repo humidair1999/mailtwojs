@@ -7,7 +7,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-	<title></title>
+	<title>J. Ky Marsh - mailtwo.js: A better way to handle 'mailto:' links across your site</title>
 	<meta name="description" content="">
 	<meta name="author" content="">
 
@@ -23,13 +23,39 @@
 </header>
 <div role="main">
 
+    <a href="mailto:email@example.com" id="mailtwoTest1">A single email address with ID attribute 'mailtwoTest1'</a>
+
+    <ul class="emailList">
+        <li>
+            <a href="mailto:email@example.com">An email within emailList</a>
+        </li>
+        <li>
+            <a href="mailto:email@example.com">An email within emailList</a>
+        </li>
+        <li>
+            <a href="mailto:email@example.com">An email within emailList</a>
+        </li>
+    </ul>
+
 </div>
 <footer>
 
 </footer>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')</script>
+<script src="js/libs/jquery-1.7.2.min.js"></script>
+<script src="js/mailtwo.min.js"></script>
+
+<script>
+    $("#mailtwoTest1").mailtwo({
+        mode: "fixed",
+        headerClass: "newClass"
+    });
+
+    $(".emailList").mailtwo({
+        mode: "fixed",
+        headerClass: "newClass"
+    });
+</script>
 
 </body>
 </html>
