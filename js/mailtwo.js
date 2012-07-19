@@ -28,7 +28,8 @@ Copyright (c) 2012
         };
 
     Plugin.prototype.constructModal = function(options) {
-        var modalBgElement = ("." + options.modalBgClass);
+        var modalBgElement = ("." + options.modalBgClass),
+            modalElement = ("." + options.modalClass);
 
         console.log(options);
         console.log(modalBgElement);
@@ -63,9 +64,6 @@ Copyright (c) 2012
                 .addClass(options.modalClass)
                 .html(modalInner);
 
-            console.log($modal);
-            console.log($modal.css("height"));
-
             return $modal;
         }
 
@@ -79,6 +77,14 @@ Copyright (c) 2012
             $(modalBgElement)
                 .html(constructModal());
         }
+
+        $(modalElement).css({
+            top: "50%",
+            left: "50%",
+            "margin-left": (-($(modalElement).width() / 2) + "px"),
+            "margin-top": (-($(modalElement).height() / 2) + "px")
+        });
+
     }
 
     // METHOD: initialization method for the plugin fires after setup is complete,
