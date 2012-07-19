@@ -46,7 +46,8 @@ Copyright (c) 2012
             modalInner += "<a href=\"#\" id=\"closeMailtwoModal\"></a>"
                         + "<ul>"
                         + "<li><span>Send me an email:</span>"
-                        + "<a href=\"" + options.emailFull + "\" target=\"_blank\">lol</a>"
+                        + "<textarea>hahha</textarea>"
+                        + "<a href=\"" + options.emailFull + "\" id=\"sendMailtwoEmail\" target=\"_blank\">lol</a>"
                         + "</li>";
 
             for (var i = 0; i < socialMediaSites.length; i++) {
@@ -82,8 +83,8 @@ Copyright (c) 2012
         $(modalElement).css({
             top: "50%",
             left: "50%",
-            "margin-left": (-($(modalElement).width() / 2)),
-            "margin-top": (-($(modalElement).height() / 2))
+            "margin-left": (-($(modalElement).outerWidth() / 2)),
+            "margin-top": (-($(modalElement).outerHeight() / 2))
         });
 
     }
