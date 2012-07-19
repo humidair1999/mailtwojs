@@ -11,10 +11,11 @@ Copyright (c) 2012
     // create the defaults and set up the constructor for the plugin itself
     var pluginName = "mailtwo",
         defaults = {
-            mode: "repeater",
-            period: 5,
-            preserveStyle: true,
-            terminateTable: false
+            modalBgClass: ".mailtwoBackground",
+            modalClass: ".mailtwoModal",
+            facebook: "",
+            twitter: "",
+            linkedin: ""
             // headerClass has no default; no point in initializing an empty option!
         },
         Plugin = function(element, options) {
@@ -173,10 +174,13 @@ Copyright (c) 2012
     Plugin.prototype.init = function() {
         var $element = $(this.element),
             options = this.options,
-            thArray = [];
+            email = $element.attr("href");
 
         console.log($element);
+        console.log(options);
+        console.log(email);
 
+        /*
         // for every header cell, store its content and width value; optionally,
         //  store the text's style as well
         $element.find("th").each(function() {
@@ -199,16 +203,34 @@ Copyright (c) 2012
         // pass relevant objects/values to respective method, depending
         //  upon user input or default
         (options.mode === "repeater") ? this.repeatHeader($element, options, thArray) : this.fixHeader($element, options, thArray);
+        */
     };
 
     // a lightweight plugin wrapper around the constructor, preventing against
     //  multiple instantiations
     $.fn[pluginName] = function(options) {
-        return this.each(function() {
+        var attachPlugin = function() {
+            // console.log($(this));
+
             if (!$.data(this, "plugin_" + pluginName)) {
                 $.data(this, "plugin_" + pluginName,
                 new Plugin(this, options));
             }
+        }
+
+        return this.each(function() {
+            // if element isn't a link, find actual links within the element and
+            //  attach the plugin instantiation to each of them
+            if (!$(this).attr("href")) {
+                $(this).find("a").each(function() {
+                    attachPlugin.call(this);
+                });
+            }
+            // otherwise, just attach the plugin to the specified link element
+            else {
+                attachPlugin.call(this);
+            }
+
         });
     };
 
