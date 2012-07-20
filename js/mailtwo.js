@@ -100,12 +100,22 @@ Copyright (c) 2012
             options = this.options;
 
         options.emailFull = $element.attr("href");
-        options.emailParsed = options.emailFull.split(":")[1];
+        // options.emailParsed = options.emailFull.split(":")[1];
         options.facebook = options.facebook || $element.attr("data-facebook");
         options.twitter = options.twitter || $element.attr("data-twitter");
         options.linkedin = options.linkedin || $element.attr("data-linkedin");
 
         console.log($element);
+        console.log(options.emailFull);
+
+        if (((options.emailFull.indexOf("[at]")) > -1) || ((options.emailFull.indexOf("[dot]")) > -1)) {
+            console.log(options.emailFull.indexOf("[at]"));
+
+            options.emailFull = options.emailFull.replace("[at]", "@");
+            options.emailFull = options.emailFull.replace("[dot]", ".");
+        }
+
+        console.log(options.emailFull);
 
         $element.on("click", function(evt) {
             evt.preventDefault();
@@ -132,17 +142,21 @@ Copyright (c) 2012
                 emailLinkMessage = (emailLink.match(/(&body=)[^&]*/));
 
             evt.stopImmediatePropagation();
-            evt.stopPropagation();
 
-            console.log(evt);
+            console.log(evt.currentTarget.id);
+
+            if (evt.currentTarget.id === "mailtwoInput") {
+                emailLink = emailLink.replace(emailLinkSubject[0], ("&subject=" + $("#mailtwoInput").val()));
+            }
+            else {
+                emailLink = emailLink.replace(emailLinkMessage[0], ("&body=" + $("#mailtwoTextarea").val()));
+            }
+
+            emailLink = emailLink.replace(/\s/g, "%20");
+
             console.log(emailLink);
             console.log(emailLinkSubject);
             console.log(emailLinkMessage);
-
-            emailLink = emailLink.replace(emailLinkSubject[0], ("&subject=" + $("#mailtwoInput").val()));
-            emailLink = emailLink.replace(emailLinkMessage[0], ("&body=" + $("#mailtwoTextarea").val()));
-
-            console.log(emailLink);
 
             $("#sendMailtwoEmail").attr("href", emailLink);
         });
