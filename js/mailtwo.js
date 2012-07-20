@@ -41,7 +41,8 @@ Copyright (c) 2012
             modalInner += "<span>Contact Me</span>"
                         + "<a href=\"#\" id=\"closeMailtwoModal\"></a>"
                         + "<ul>"
-                        + "<li><span>Send me an email:</span>"
+                        + "<li>"
+                        + "<span>Send me an email:</span>"
                         + "<input type=\"text\" id=\"mailtwoInput\" placeholder=\"Subject\" />"
                         + "<textarea id=\"mailtwoTextarea\" placeholder=\"Message\"></textarea>"
                         + "<a href=\"" + options.emailFull + "&subject=&body=\" id=\"sendMailtwoEmail\" target=\"_blank\">Send</a>"
@@ -92,7 +93,7 @@ Copyright (c) 2012
     }
 
     // METHOD: initialization method for the plugin fires after setup is complete,
-    //  element and options are instantly available to the object.
+    //  element and options are instantly available to the object
     Plugin.prototype.init = function() {
         var plugin = this,
             $element = $(this.element),
@@ -104,7 +105,7 @@ Copyright (c) 2012
         options.twitter = options.twitter || $element.attr("data-twitter");
         options.linkedin = options.linkedin || $element.attr("data-linkedin");
 
-        // if user has chosen to obscure their email address, convert it to a normal
+        // if user has chosen to obscure their email address, convert it to a proper
         //  email address for our modal
         if (((options.emailFull.indexOf("[at]")) > -1) || ((options.emailFull.indexOf("[dot]")) > -1)) {
             options.emailFull = options.emailFull.replace("[at]", "@");
@@ -135,7 +136,7 @@ Copyright (c) 2012
 
         // on every keystroke, the href url for the mailto: link is updated with the
         //  user's subject and message
-        $(document).on("keyup", "#mailtwoTextarea, #mailtwoInput", function(evt) {
+        $(document).on("keyup", "#mailtwoInput, #mailtwoTextarea", function(evt) {
             var emailLink = $("#sendMailtwoEmail").attr("href"),
                 emailLinkSubject = emailLink.match(/(&subject=)[^&]*/),
                 emailLinkMessage = emailLink.match(/(&body=)[^&]*/);
@@ -172,7 +173,7 @@ Copyright (c) 2012
         }
 
         return this.each(function() {
-            // if element isn't a link, find actual links within the element and
+            // if element itself isn't a link, find actual links within the element and
             //  attach the plugin instantiation to each of them
             if (!$(this).attr("href")) {
                 $(this).find("a").each(function() {
