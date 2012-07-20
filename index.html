@@ -7,7 +7,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-	<title>J. Ky Marsh - mailtwo.js: A better way to handle 'mailto:' links across your site</title>
+	<title>J. Ky Marsh - mailtwo.js: A better way to handle "mailto:" links across your site</title>
 	<meta name="description" content="">
 	<meta name="author" content="">
 
@@ -23,15 +23,13 @@
 	<script src="js/libs/modernizr-2.5.3.min.js"></script>
 </head>
 <body>
-<header>
 
-</header>
 <div class="main container_12" role="main">
 
     <header>
-        <h1>mailtwo.js - <em>A better way to handle 'mailto:' links across your site</em></h1>
+        <h1><span class="green">mailtwo.js</span> - <em>A better way to handle "mailto:" links across your site</em></h1>
 
-        <h2>a jQuery plugin by j. ky marsh</h2>
+        <h2>a jQuery plugin by <a href="http://github.com/jkymarsh" target="_blank">j. ky marsh</a></h2>
     </header>
 
     <section>
@@ -49,7 +47,7 @@
             </p>
 
             <p>
-                Additionally, mailtwo.js allows you to use an "encrypted" email address, such as
+                Additionally, mailtwo.js optionally allows you to use an "encrypted" email address, such as
             </p>
 
             <pre><code data-language="html">fake.guy[at]emailprovider[dot]com</code></pre>
@@ -59,26 +57,26 @@
             </p>
 
             <p>
-                Go ahead and <strong>click on any of the "contact" links over on the right to get a glimpse</strong>.
+                Go ahead and <strong>click on any of the "contact" links over on the right to get a glimpse</strong>. Oh, and don't forget to view the page source for clarification.
             </p>
         </article>
 
         <aside class="grid_4">
             <h4>Solitary link</h4>
 
-            <a href="mailto:email[at]example[dot]com" id="mailtwoTest1" data-facebook="datafb" data-twitter="datatw" data-linkedin="datali">A single email address with ID attribute 'mailtwoTest1'</a>
+            <a href="mailto:some.guy[at]example1[dot]com" id="mailtwoSingleExample" data-facebook="datafb" data-twitter="datatw" data-linkedin="datali">Contact me!</a>
 
             <h4>List of links</h4>
 
-            <ul class="emailList">
+            <ul class="mailtwoListExample">
                 <li>
-                    <a href="mailto:email@example.com" data-facebook="hahafacebook">An email within emailList</a>
+                    <a href="mailto:some.guy@example2.com" data-facebook="some.guy.fb">An email within emailList</a>
                 </li>
                 <li>
-                    <a href="mailto:email@example.com">An email within emailList</a>
+                    <a href="mailto:some.guy@example3.com" data-facebook="some.guy.fb" data-twitter="some.guy.tw">An email within emailList</a>
                 </li>
                 <li>
-                    <a href="mailto:email@example.com" data-linkedin="hahalinkedin">An email within emailList</a>
+                    <a href="mailto:some.guy@example4.com" data-facebook="some.guy.fb" data-twitter="some.guy.tw" data-linkedin="some.guy.li">An email within emailList</a>
                 </li>
             </ul>
         </aside>
@@ -137,7 +135,10 @@ modalClass: "mailtwoModal"</code></pre>
 
             <ul>
                 <li>
-                    Mailtwo.js includes a .css file that the modal and background rely on for styling. Don't forget to include it! (If you override the two CSS classes, of course, styling is then up to you.)
+                    Mailtwo.js includes a .css file that the modal and background rely on for styling. Don't forget to include it! (If you override the default CSS classes, of course, styling is then up to you.)
+                </li>
+                <li>
+                    Speaking of which: by all means, customize the default .css file! I'm not a designer by any means, so the default is a bit hideous.
                 </li>
                 <li>
                     If you initialize multiple instances of mailtwo.js, it's best if they all share the same CSS classes. If you instantiate multiple instances, all with different classes, bad things will happen, I promise.
@@ -147,9 +148,6 @@ modalClass: "mailtwoModal"</code></pre>
     </section>
 
 </div>
-<footer>
-
-</footer>
 
 <script src="js/libs/jquery-1.7.2.min.js"></script>
 <script src="js/libs/rainbow-custom.min.js"></script>
@@ -157,17 +155,13 @@ modalClass: "mailtwoModal"</code></pre>
 <script src="js/mailtwo.js"></script>
 
 <script>
-    $("#mailtwoTest1").mailtwo({
-        facebook: "",
-        twitter: "",
-        linkedin: ""
+    $("#mailtwoSingleExample").mailtwo({
+        facebook: "some.guy.fb",
+        twitter: "some.guy.tw",
+        linkedin: "some.guy.li"
     });
 
-    $(".emailList").mailtwo({
-        facebook: "",
-        twitter: "whatever",
-        linkedin: ""
-    });
+    $(".mailtwoListExample").mailtwo();
 </script>
 
 </body>

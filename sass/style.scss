@@ -74,6 +74,9 @@ td { vertical-align: top; }
 
 /* =sass stuff */
 
+$green: #61CE3C;
+$blue: #8DA6CE;
+
 @mixin guideBorders {
     border: 0px solid #000;
 }
@@ -163,7 +166,7 @@ footer {
 }
 
 pre {
-    margin: 6px 0;
+    margin: 10px 0;
 }
 
 p {
@@ -171,19 +174,55 @@ p {
 }
 
 section {
-    margin: 0 0 16px;
-    padding: 16px 0 0;
+    margin: 0 0 30px;
+    padding: 30px 0 0;
 
-    border: solid #444;
+    border: solid #e0e0e0;
     border-width: 1px 0 0 0;
 }
 
+h1 {
+    font-size: 30px;
+}
 
+h2 {
+    font-size: 20px;
+}
 
+h3 {
+    font-size: 26px;
+}
 
+h4 {
+    margin: 10px 0;
 
+    font-size: 18px;
+}
 
+a {
+    &:link, &:visited {
+        color: $blue;
+        text-decoration: none;
+    }
 
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.blue {
+    color: $blue;
+}
+
+.green {
+    color: $green;
+}
+
+/* =header */
+
+header {
+    margin: 40px 0;
+}
 
 
 
