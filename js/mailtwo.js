@@ -47,8 +47,9 @@ Copyright (c) 2012
                         + "<a href=\"#\" id=\"closeMailtwoModal\"></a>"
                         + "<ul>"
                         + "<li><span>Send me an email:</span>"
-                        + "<textarea id=\"mailtwoTextarea\" placeholder=\"Body of email message\"></textarea>"
-                        + "<a href=\"" + options.emailFull + "\" id=\"sendMailtwoEmail\" target=\"_blank\">Send</a>"
+                        + "<input type=\"text\" id=\"mailtwoInput\" placeholder=\"Subject\" />"
+                        + "<textarea id=\"mailtwoTextarea\" placeholder=\"Message\"></textarea>"
+                        + "<a href=\"" + options.emailFull + "&subject=&body=\" id=\"sendMailtwoEmail\" target=\"_blank\">Send</a>"
                         + "</li>";
 
             for (var i = 0; i < socialMediaSites.length; i++) {
@@ -125,10 +126,25 @@ Copyright (c) 2012
             // console.log($("." + options.modalBgClass).css("display"));
         });
 
-        $(document).on("keydown", "#mailtwoTextarea", function(evt) {
-            evt.stopImmediatePropagation();
+        $(document).on("keyup", "#mailtwoTextarea, #mailtwoInput", function(evt) {
+            var emailLink = ($("#sendMailtwoEmail").attr("href")),
+                emailLinkSubject = (emailLink.match(/(&subject=)[^&]*/)),
+                emailLinkMessage = (emailLink.match(/(&body=)[^&]*/));
 
-            console.log("pressed");
+            evt.stopImmediatePropagation();
+            evt.stopPropagation();
+
+            console.log(evt);
+            console.log(emailLink);
+            console.log(emailLinkSubject);
+            console.log(emailLinkMessage);
+
+            emailLink = emailLink.replace(emailLinkSubject[0], ("&subject=" + $("#mailtwoInput").val()));
+            emailLink = emailLink.replace(emailLinkMessage[0], ("&body=" + $("#mailtwoTextarea").val()));
+
+            console.log(emailLink);
+
+            $("#sendMailtwoEmail").attr("href", emailLink);
         });
     };
 
