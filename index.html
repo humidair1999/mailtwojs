@@ -122,6 +122,12 @@ $("#aLink").mailtwo({
 
 modalBgClass: "mailtwoBackground",
 modalClass: "mailtwoModal"</code></pre>
+
+            <pre><code data-language="html"><!-- additionally, there are two ways to add social networking accounts: either via the plugin initiation properties (as above) or using data- attributes: -->
+
+<a href="fake.guy[at]emailprovider[dot]com" data-facebook="some.guy">Contact me!</a>
+
+<!-- the plugin properties always take precedence, so set one or the other, but not both. The data- attributes work well when you use mailtwo.js on a list of links but only want social networking accounts on one or a few of them. --></code></pre>
         </article>
     </section>
 
@@ -132,6 +138,9 @@ modalClass: "mailtwoModal"</code></pre>
             <ul>
                 <li>
                     Mailtwo.js includes a .css file that the modal and background rely on for styling. Don't forget to include it! (If you override the two CSS classes, of course, styling is then up to you.)
+                </li>
+                <li>
+                    If you initialize multiple instances of mailtwo.js, it's best if they all share the same CSS classes. If you instantiate multiple instances, all with different classes, bad things will happen, I promise.
                 </li>
             </ul>
         </article>
