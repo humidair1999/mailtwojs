@@ -72,6 +72,49 @@ td { vertical-align: top; }
    Author: J. Ky Marsh
    ========================================================================== */
 
+/* =sass stuff */
+
+@mixin guideBorders {
+    border: 0px solid #000;
+}
+
+@mixin textShadowGray {
+    text-shadow: 1px 1px 4px #222;
+}
+
+@mixin borderRadius($radius) {
+    -webkit-border-radius: $radius;
+    border-radius:         $radius;
+
+    -webkit-background-clip: padding-box;
+    background-clip:         padding-box;
+}
+
+@mixin boxShadow($xoffset, $yoffset, $blur, $color) {
+    -webkit-box-shadow: $xoffset $yoffset $blur $color;
+    box-shadow:         $xoffset $yoffset $blur $color;
+}
+
+@mixin linearGradient($fromdir, $todir, $fromcolor, $tocolor) {
+    background-image: -webkit-gradient(linear, $fromdir, $todir, from($fromcolor), to($tocolor));
+    background-image: -webkit-linear-gradient($fromdir, $fromcolor, $tocolor);
+    background-image:         linear-gradient(to $todir, $fromcolor, $tocolor);
+}
+
+@mixin clearfix {
+    zoom: 1;
+
+    &:before, &:after {
+        content: "";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+/* =globals */
+
 * {
     -webkit-margin-before:  0;
     -webkit-margin-after:   0;
@@ -91,6 +134,37 @@ td { vertical-align: top; }
     font-style: normal;
 }
 
+.container_12,
+.grid_1,
+.grid_2,
+.grid_3,
+.grid_4,
+.grid_5,
+.grid_6,
+.grid_7,
+.grid_8,
+.grid_9,
+.grid_10,
+.grid_11,
+.grid_12 {
+    @include guideBorders;
+
+    @include clearfix;
+}
+
+header,
+section,
+article,
+aside,
+footer {
+    @include guideBorders;
+
+    @include clearfix;
+}
+
+pre {
+    margin: 0;
+}
 
 
 

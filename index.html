@@ -13,7 +13,11 @@
 
 	<meta name="viewport" content="width=device-width">
 
-	<link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/960.css">
+    <link rel="stylesheet" href="css/blackboard.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
     <link rel="stylesheet" href="css/mailtwo.css">
 
 	<script src="js/libs/modernizr-2.5.3.min.js"></script>
@@ -22,7 +26,66 @@
 <header>
 
 </header>
-<div class="main" role="main">
+<div class="main container_12" role="main">
+
+    <header>
+        <h1>mailtwo.js - <em>A better way to handle 'mailto:' links across your site</em></h1>
+
+        <h2>a jQuery plugin by j. ky marsh</h2>
+    </header>
+
+    <section>
+        <article class="grid_8">
+            <h3>What it is</h3>
+
+            <p>
+                Mailtwo.js is a jQuery plugin that snatches all your
+                <pre><code data-language="html"><a href="mailto:"></a></code></pre>
+                links and transforms them into styleable modals, allowing your users to easily draft an email or locate you on social networks, rather than simply dumping them into a blank email client.
+            </p>
+
+            <p>
+                Additionally, mailtwo.js allows you to use an "encrypted" email address, such as
+                <pre><code data-language="html">fake.guy[at]emailprovider[dot]com</code></pre>
+                as the mailto: recipient, and it will be properly decoded and placed into the modal at runtime.
+        </article>
+
+        <aside class="grid_4">
+            <pre><code data-language="javascript">console.log("lol");
+console.log("lol");
+console.log("lol");
+console.log("lol");
+console.log("lol");</code></pre>
+        </aside>
+    </section>
+
+    <section>
+        <article class="grid_8">
+            <h3>How it's used</h3>
+
+            <p>
+                lol
+            </p>
+        </article>
+
+        <aside class="grid_4">
+            <pre><code data-language="javascript">console.log("lol");
+console.log("lol");
+console.log("lol");
+console.log("lol");
+console.log("lol");</code></pre>
+        </aside>
+    </section>
+
+    <section>
+        <article class="grid_8">
+            <h3>Options</h3>
+
+            <p>
+                lol
+            </p>
+        </article>
+    </section>
 
     <a href="mailto:email[at]example[dot]com" id="mailtwoTest1" data-facebook="datafb" data-twitter="datatw" data-linkedin="datali">A single email address with ID attribute 'mailtwoTest1'</a>
 
@@ -44,6 +107,8 @@
 </footer>
 
 <script src="js/libs/jquery-1.7.2.min.js"></script>
+<script src="js/libs/rainbow-custom.min.js"></script>
+
 <script src="js/mailtwo.js"></script>
 
 <script>
