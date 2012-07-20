@@ -40,22 +40,47 @@
 
             <p>
                 Mailtwo.js is a jQuery plugin that snatches all your
-                <pre><code data-language="html"><a href="mailto:"></a></code></pre>
+            </p>
+
+            <pre><code data-language="html"><a href="mailto:"></a></code></pre>
+
+            <p>
                 links and transforms them into styleable modals, allowing your users to easily draft an email or locate you on social networks, rather than simply dumping them into a blank email client.
             </p>
 
             <p>
                 Additionally, mailtwo.js allows you to use an "encrypted" email address, such as
-                <pre><code data-language="html">fake.guy[at]emailprovider[dot]com</code></pre>
+            </p>
+
+            <pre><code data-language="html">fake.guy[at]emailprovider[dot]com</code></pre>
+
+            <p>
                 as the mailto: recipient, and it will be properly decoded and placed into the modal at runtime.
+            </p>
+
+            <p>
+                Go ahead and <strong>click on any of the "contact" links over on the right to get a glimpse</strong>.
+            </p>
         </article>
 
         <aside class="grid_4">
-            <pre><code data-language="javascript">console.log("lol");
-console.log("lol");
-console.log("lol");
-console.log("lol");
-console.log("lol");</code></pre>
+            <h4>Solitary link</h4>
+
+            <a href="mailto:email[at]example[dot]com" id="mailtwoTest1" data-facebook="datafb" data-twitter="datatw" data-linkedin="datali">A single email address with ID attribute 'mailtwoTest1'</a>
+
+            <h4>List of links</h4>
+
+            <ul class="emailList">
+                <li>
+                    <a href="mailto:email@example.com" data-facebook="hahafacebook">An email within emailList</a>
+                </li>
+                <li>
+                    <a href="mailto:email@example.com">An email within emailList</a>
+                </li>
+                <li>
+                    <a href="mailto:email@example.com" data-linkedin="hahalinkedin">An email within emailList</a>
+                </li>
+            </ul>
         </aside>
     </section>
 
@@ -64,42 +89,53 @@ console.log("lol");</code></pre>
             <h3>How it's used</h3>
 
             <p>
-                lol
+                In its simplest format, simply place a mailto: link somewhere on your webpage, and then toss the mailtwo.js initialization snippet on your page.
+            </p>
+
+            <p>
+                You can either initialize mailtwo.js directly on a single mailto: link, or on any DOM element you want! Mailtwo.js will automatically traverse through whatever element you specify, searching for mailto: links and attaching itself to them.
             </p>
         </article>
 
         <aside class="grid_4">
-            <pre><code data-language="javascript">console.log("lol");
-console.log("lol");
-console.log("lol");
-console.log("lol");
-console.log("lol");</code></pre>
+            <pre><code data-language="javascript">$("#aLink").mailtwo();</code></pre>
+
+            <pre><code data-language="javascript">$(".linkList").mailtwo();</code></pre>
         </aside>
     </section>
 
     <section>
-        <article class="grid_8">
+        <article class="grid_12">
             <h3>Options</h3>
 
-            <p>
-                lol
-            </p>
+            <pre><code data-language="javascript">// mailtwo.js has 5 customizable properties:
+
+$("#aLink").mailtwo({
+    facebook: "", // your facebook username (facebook.com/[username])
+    twitter: "", // your twitter username (twitter.com/[username])
+    linkedin: "", // your linkedin... thing (linkedin.com/[...thing])
+    modalBgClass: "", // CSS class for the modal's background
+    modalClass: "" // CSS class for the modal itself
+});
+
+// all 5 of them are optional, and the last 2 have defaults:
+
+modalBgClass: "mailtwoBackground",
+modalClass: "mailtwoModal"</code></pre>
         </article>
     </section>
 
-    <a href="mailto:email[at]example[dot]com" id="mailtwoTest1" data-facebook="datafb" data-twitter="datatw" data-linkedin="datali">A single email address with ID attribute 'mailtwoTest1'</a>
+    <section>
+        <article class="grid_12">
+            <h3>Some notes</h3>
 
-    <ul class="emailList">
-        <li>
-            <a href="mailto:email@example.com" data-facebook="hahafacebook">An email within emailList</a>
-        </li>
-        <li>
-            <a href="mailto:email@example.com">An email within emailList</a>
-        </li>
-        <li>
-            <a href="mailto:email@example.com" data-linkedin="hahalinkedin">An email within emailList</a>
-        </li>
-    </ul>
+            <ul>
+                <li>
+                    Mailtwo.js includes a .css file that the modal and background rely on for styling. Don't forget to include it! (If you override the two CSS classes, of course, styling is then up to you.)
+                </li>
+            </ul>
+        </article>
+    </section>
 
 </div>
 <footer>
