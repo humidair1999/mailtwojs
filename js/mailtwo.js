@@ -31,18 +31,13 @@ Copyright (c) 2012
         var modalBgElement = ("." + options.modalBgClass),
             modalElement = ("." + options.modalClass);
 
-        console.log(options);
-        console.log(modalBgElement);
-
         var constructModal = function() {
             var $modal = $("<div />"),
                 modalInner = "",
                 socialMediaSites = ["facebook", "twitter", "linkedin"],
                 socialMediaAccounts = [options.facebook, options.twitter, options.linkedin];
 
-            console.log(socialMediaSites);
-            console.log(socialMediaAccounts);
-
+            // begin constructing the contents of the modal window
             modalInner += "<span>Contact Me</span>"
                         + "<a href=\"#\" id=\"closeMailtwoModal\"></a>"
                         + "<ul>"
@@ -52,6 +47,8 @@ Copyright (c) 2012
                         + "<a href=\"" + options.emailFull + "&subject=&body=\" id=\"sendMailtwoEmail\" target=\"_blank\">Send</a>"
                         + "</li>";
 
+            // for each of the 3 social media sites, determine if the user entered a
+            //  username via plugin option or data- attr, and if so, add it to the modal
             for (var i = 0; i < socialMediaSites.length; i++) {
                 if (socialMediaAccounts[i]) {
                     modalInner += "<li>"
@@ -71,17 +68,20 @@ Copyright (c) 2012
             return $modal;
         }
 
+        // if the modal doesn't exist as a direct child of the body, add it to the DOM
         if ($("body").children(modalBgElement).length === 0) {
             $("<div />")
                 .addClass(options.modalBgClass)
                 .html(constructModal())
                 .appendTo("body");
         }
+        // if the modal DOES exist, merely reconstruct its inner contents
         else {
             $(modalBgElement)
                 .html(constructModal());
         }
 
+        // position the modal in the center of the browser viewport
         $(modalElement).css({
             top: "50%",
             left: "50%",
