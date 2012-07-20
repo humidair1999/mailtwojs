@@ -166,12 +166,22 @@ Copyright (c) 2012
     //  multiple instantiations
     $.fn[pluginName] = function(options) {
         var attachPlugin = function() {
-            // console.log($(this));
+            var linkText = ($(this).attr("href"));
 
-            if (!$.data(this, "plugin_" + pluginName)) {
-                $.data(this, "plugin_" + pluginName,
-                new Plugin(this, options));
+            console.log($(this));
+            console.log(linkText);
+
+            if (linkText.indexOf("mailto:") > -1) {
+                if (!$.data(this, "plugin_" + pluginName)) {
+                    $.data(this, "plugin_" + pluginName, new Plugin(this, options));
+                }
+
+                console.log("IS A MAILTO: LINK");
             }
+            else {
+                console.log("is not a mailto: link");
+            }
+
         }
 
         return this.each(function() {
