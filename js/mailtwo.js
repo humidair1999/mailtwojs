@@ -67,7 +67,7 @@ Copyright (c) 2012
                 .html(modalInner);
 
             return $modal;
-        }
+        };
 
         // if the modal doesn't exist as a direct child of the body, add it to the DOM
         if ($("body").children(modalBgElement).length === 0) {
@@ -89,8 +89,7 @@ Copyright (c) 2012
             "margin-left": (-($(modalElement).outerWidth() / 2)),
             "margin-top": (-($(modalElement).outerHeight() / 2))
         });
-
-    }
+    };
 
     // METHOD: initialization method for the plugin fires after setup is complete,
     //  element and options are instantly available to the object
@@ -170,7 +169,7 @@ Copyright (c) 2012
                     $.data(this, "plugin_" + pluginName, new Plugin(this, options));
                 }
             }
-        }
+        };
 
         return this.each(function() {
             // if element itself isn't a link, find actual links within the element and
